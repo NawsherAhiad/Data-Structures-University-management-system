@@ -1,0 +1,33 @@
+Course *courseList = NULL;
+
+    // Create a course
+    Course *course1 = create_course("CS101", "Introduction to Computer Science", 3.0f);
+    insert_course(&courseList, course1);
+
+    // Create another course
+    Course *course2 = create_course("CS102", "Data Structures", 4.0f);
+    insert_course(&courseList, course2);
+
+    // Read a course
+    printf("Reading course CS101:\n");
+    read_course(courseList, "CS101");
+
+    // Update the course
+    Course updatedCourse;
+    strcpy(updatedCourse.courseCode, "CS101");
+    strcpy(updatedCourse.courseTitle, "Intro to CS");
+    updatedCourse.courseCredit = 3.5f;
+    update_course(courseList, "CS101", &updatedCourse);
+
+    // Read the updated course
+    printf("Reading updated course CS101:\n");
+    read_course(courseList, "CS101");
+
+    // Delete the course
+    delete_course(&courseList, "CS101");
+
+    // Try to read the deleted course
+    printf("Reading deleted course CS101:\n");
+    read_course(courseList, "CS101");
+
+    return 0;

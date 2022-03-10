@@ -1,0 +1,53 @@
+ Faculty* head = NULL;
+
+    // Creating and inserting a faculty member
+    Faculty* faculty1 = create_faculty(1, 201, "Dr. John Smith", "john.smith@example.com", "Computer Science and Engineering", 
+                                       "1234567890", "Male");
+    insert_faculty(&head, faculty1);
+
+    // Reading a faculty member
+    read_faculty(head, 1);
+
+    // Creating and inserting another faculty member
+    Faculty* faculty2 = create_faculty(2, 202, "Dr. Jane Doe", "jane.doe@example.com", "Electrical Engineering", 
+                                       "0987654321", "Female");
+    insert_faculty(&head, faculty2);
+
+    // Reading all faculty members
+    printf("All faculty members:\n");
+    Faculty* current = head;
+    while (current != NULL) {
+        print_faculty(current);
+        current = current->next;
+    }
+
+    // Updating a faculty member
+    Faculty* updated_faculty1 = create_faculty(1, 201, "Dr. Johnathan Smith", "john.smith@example.com", "Computer Science", 
+                                               "1234567890", "Male");
+    update_faculty(head, 1, updated_faculty1);
+
+    // Reading the updated faculty member
+    read_faculty(head, 1);
+
+    // Deleting a faculty member
+    delete_faculty(&head, 1);
+
+    // Attempt to read deleted faculty member
+    read_faculty(head, 1);
+
+    // Reading all faculty members after deletion
+    printf("All faculty members after deletion:\n");
+    current = head;
+    while (current != NULL) {
+        print_faculty(current);
+        current = current->next;
+    }
+
+    // Free remaining faculty members
+    while (head != NULL) {
+        Faculty* temp = head;
+        head = head->next;
+        free(temp);
+    }
+
+    return 0;

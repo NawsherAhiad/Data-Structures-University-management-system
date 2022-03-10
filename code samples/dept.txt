@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include "Department.h"
+
+int main() {
+    // Initialize the head of the list
+    Department* head = NULL;
+
+    // Creating and inserting a department
+    Department* dept1 = create_department("Computer Science", "Dr. Alan Turing", "Prof. A, Prof. B, Prof. C", 
+                                          10, "CS101, CS102, CS103", "CS201, CS202");
+    insert_department(&head, dept1);
+
+    // Reading a department
+    read_department(head, "Computer Science");
+
+    // Creating and inserting another department
+    Department* dept2 = create_department("Electrical Engineering", "Dr. Nikola Tesla", "Prof. X, Prof. Y, Prof. Z", 
+                                          8, "EE101, EE102, EE103", "EE201, EE202");
+    insert_department(&head, dept2);
+
+    // Reading all departments
+    printf("All departments:\n");
+    Department* current = head;
+    while (current != NULL) {
+        print_department(current);
+        current = current->next;
+    }
+
+    // Updating a department
+    Department* updated_dept1 = create_department("Computer Science", "Dr. Grace Hopper", "Prof. A, Prof. B, Prof. C", 
+                                                  12, "CS101, CS104, CS105", "CS201, CS203");
+    update_department(head, "Computer Science", updated_dept1);
+
+    // Reading the updated department
+    read_department(head, "Computer Science");
+
+    // Deleting a department
+    delete_department(&head, "Computer Science");
+
+    // Attempt to read deleted department
+    read_department(head, "Computer Science");
+
+    // Reading all departments after deletion
+    printf("All departments after deletion:\n");
+    current = head;
+    while (current != NULL) {
+        print_department(current);
+        current = current->next;
+    }
+
+    // Free remaining departments
+    while (head != NULL) {
+        Department* temp = head;
+        head = head->next;
+        free(temp);
+    }
+
+    return 0;
+}

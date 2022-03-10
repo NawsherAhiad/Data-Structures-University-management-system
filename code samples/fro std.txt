@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include "User.h"
+#include "Student.h"
+#include "Student.c"
+#include "Faculty.h"
+#include "Department.h"
+#include "Course.h"
+#include "EnrolledCourses.h"
+#include "FinancialAid.h"
+#include "Section.h"
+#include "HealthStatus.h"
+#include "EarnedCredit.h"
+#include "Notice.h"
+#include "FacultyEvaluation.h"
+#include "Alumni.h"
+#include "Convocation.h"
+#include "AdvisingRules.h"
+
+int main() {
+    // Example usage
+    /*Student student1;
+    student1.ID = 1;
+    sprintf(student1.name, "kawser chowdhury");
+    // Continue to initialize other fields and other structures as needed
+
+    printf("Student ID: %d\n", student1.ID);
+    printf("Student Name: %s\n", student1.name);
+
+    return 0;
+    */
+ // Initialize the head of the list
+    Student* head = NULL;
+
+    // Creating and inserting a student
+    Student* student1 = create_student(1, 101, "John Doe", "john.doe@example.com", "Computer Science", 
+                                       "1234567890", "123 Main St", "Dr. Smith", 30.0, 
+                                       "Male", 2, "2001-01-01");
+    insert_student(&head, student1);
+
+    // Reading a student
+    read_student(head, 1);
+
+    // Creating and inserting another student
+    Student* student2 = create_student(2, 102, "Jane Doe", "jane.doe@example.com", "Electrical Engineering", 
+                                       "0987654321", "456 Main St", "Dr. Jones", 40.0, 
+                                       "Female", 3, "2000-02-02");
+    insert_student(&head, student2);
+
+    // Reading all students
+    printf("All students:\n");
+    Student* current = head;
+    while (current != NULL) {
+        print_student(current);
+        current = current->next;
+    }
+
+    // Updating a student
+    Student* updated_student1 = create_student(1, 101, "Johnathan Doe", "john.doe@example.com", "Computer Science", 
+                                               "1234567890", "123 Main St", "Dr. Smith", 35.0, 
+                                               "Male", 2, "2001-01-01");
+    update_student(head, 1, updated_student1);
+
+    // Reading the updated student
+    read_student(head, 1);
+
+    // Deleting a student
+    delete_student(&head, 1);
+
+    // Attempt to read deleted student
+    read_student(head, 1);
+
+    // Reading all students after deletion
+    printf("All students after deletion:\n");
+    current = head;
+    while (current != NULL) {
+        print_student(current);
+        current = current->next;
+    }
+
+    // Free remaining students
+    while (head != NULL) {
+        Student* temp = head;
+        head = head->next;
+        free(temp);
+    }
+
+    return 0;
+}
