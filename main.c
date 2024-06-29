@@ -645,7 +645,7 @@ int main()
         }
         else if (opt == 10)
         {
-            printf("Thanks to DHAMAI for guiding us to complete this project");
+            printf("Thanks sir for guiding us to complete this project");
         }
 
     }
